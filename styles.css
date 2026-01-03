@@ -410,6 +410,17 @@ section {
     padding: var(--spacing-md);
     background: rgba(255, 255, 255, 0.03);
     border-radius: 12px;
+    position: relative;
+}
+
+.message-content::before {
+    content: '💔';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.6;
 }
 
 .message-reassurance {
@@ -438,6 +449,106 @@ section {
     background: linear-gradient(90deg, var(--accent-gold), transparent);
     opacity: 0.5;
     border-radius: 2px;
+}
+
+/* 強調テキストの装飾 */
+.emphasize-text {
+    color: var(--accent-gold);
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding: 2px 8px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+    border-radius: 6px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+.emphasize-text::before {
+    content: '✨';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    opacity: 0.7;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* 数値の強調装飾 */
+.emphasize-number {
+    color: var(--primary-color);
+    font-weight: 900;
+    font-size: 1.15em;
+    position: relative;
+    display: inline-block;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.2), rgba(233, 30, 99, 0.1));
+    border-radius: 8px;
+    border: 2px solid rgba(233, 30, 99, 0.4);
+    text-shadow: 0 2px 10px rgba(233, 30, 99, 0.5);
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+    animation: numberGlow 2.5s ease-in-out infinite;
+    letter-spacing: 0.05em;
+}
+
+.emphasize-number::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.3), transparent);
+    border-radius: 8px;
+    z-index: -1;
+    animation: numberPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateY(-50%) scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+@keyframes numberGlow {
+    0%, 100% {
+        text-shadow: 0 2px 10px rgba(233, 30, 99, 0.5);
+        box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+    }
+    50% {
+        text-shadow: 0 2px 15px rgba(233, 30, 99, 0.7), 0 0 20px rgba(233, 30, 99, 0.4);
+        box-shadow: 0 4px 20px rgba(233, 30, 99, 0.5);
+    }
+}
+
+@keyframes numberPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
 }
 
 /* 解決策セクション */
@@ -754,6 +865,20 @@ section {
     color: var(--text-light);
     text-align: left;
     margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-left: 20px;
+}
+
+.testimonial-text::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -5px;
+    font-size: 2.5em;
+    color: var(--primary-color);
+    opacity: 0.3;
+    font-family: serif;
+    line-height: 1;
 }
 
 .testimonial-achievement {
@@ -786,6 +911,13 @@ section {
     position: relative;
     padding-left: calc(var(--spacing-lg) + 32px);
     border-left: 4px solid var(--accent-gold);
+    transition: all 0.3s ease;
+}
+
+.achievement-list li:hover {
+    background: rgba(255, 215, 0, 0.1);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
 }
 
 .achievement-list li::before {
@@ -859,6 +991,19 @@ section {
     color: var(--text-light);
     text-align: left;
     margin-bottom: var(--spacing-md);
+    position: relative;
+    padding-left: 24px;
+}
+
+.closing-text::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    opacity: 0.6;
+    line-height: 2.4;
 }
 
 .closing-text:last-child {
@@ -873,6 +1018,7 @@ section {
     border: 2px solid var(--border-gold);
     border-radius: 16px;
     text-align: center;
+    position: relative;
 }
 
 .price-badge p {
@@ -881,6 +1027,27 @@ section {
     font-weight: 500;
     line-height: 2;
     margin: 0;
+    position: relative;
+    padding: var(--spacing-xs) 0;
+}
+
+.price-badge::before {
+    content: '🎁';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: giftBounce 2s ease-in-out infinite;
+}
+
+@keyframes giftBounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-5px);
+    }
 }
 
 /* フッター */
@@ -965,7 +1132,32 @@ section {
     }
 }
 
+/* レスポンシブ */
 @media (max-width: 768px) {
+    /* 強調テキストの調整 */
+    .emphasize-text::before {
+        display: none;
+    }
+    
+    .emphasize-text {
+        padding: 1px 6px;
+        font-size: 0.95em;
+    }
+    
+    .emphasize-number {
+        font-size: 1.1em;
+        padding: 3px 8px;
+    }
+    
+    .testimonial-text::before {
+        font-size: 2em;
+    }
+    
+    .closing-text::before {
+        font-size: 1em;
+    }
+    
+    /* 既存のレスポンシブスタイル */
     :root {
         --spacing-3xl: 120px;
         --spacing-2xl: 96px;
@@ -1061,3 +1253,5 @@ section {
         text-align: center;
     }
 }
+
+
