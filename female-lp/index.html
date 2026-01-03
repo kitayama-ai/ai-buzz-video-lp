@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIバズ動画</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="AIバズ動画 - 今すぐ登録する">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f4e4bc;
+            --gold-dark: #b8941f;
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            --pink: #ff6b9d;
+            --pink-light: #ffb3d1;
+            --pink-dark: #e55587;
+            --cream: #fef9f3;
+            --white: #ffffff;
+            --text-dark: #2c2416;
+            --text-gray: #5a4a3a;
+            --border-gold: #d4af37;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 2.1;
+            color: var(--text-dark);
+            background-color: var(--cream);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: 0.035em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* トップバナー */
+        .top-banner {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--pink) 100%);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(to bottom, var(--white) 0%, var(--cream) 100%);
+            padding: 100px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--pink-light) 0%, transparent 70%);
+            opacity: 0.2;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 900;
+            margin-bottom: 50px;
+            line-height: 1.2;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--gold-dark) 50%, var(--text-dark) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShine 4s ease-in-out infinite;
+            text-shadow: 0 0 40px var(--gold-glow);
+        }
+
+        @keyframes textShine {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-title::before,
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 5px;
+            left: -10%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--gold) 20%, 
+                var(--gold-dark) 50%, 
+                var(--gold) 80%, 
+                transparent
+            );
+            background-size: 200% 100%;
+            animation: lineShine 3s ease-in-out infinite;
+        }
+
+        @keyframes lineShine {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero-title::before {
+            top: -30px;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        .hero-title::after {
+            bottom: -30px;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+
+        .hero-image-only {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-image-only img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--gold);
+            object-fit: contain;
+            display: block;
+            position: relative;
+        }
+
+        /* ウォーターマーク削除用（右下をグラデーションで覆う） */
+        .hero-image-only::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(135deg, 
+                transparent 0%, 
+                transparent 30%,
+                var(--cream) 70%,
+                var(--cream) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+            border-radius: 0 0 24px 0;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--gold-light) 100%);
+            border-radius: 24px;
+            border: 4px dashed var(--gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 1.125rem;
+            text-align: center;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image-placeholder::before {
+            content: '🖼️';
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+
+        /* CTAボタン */
+        .cta-button {
+            display: inline-block;
+            padding: 28px 88px;
+            font-size: 1.375rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            letter-spacing: 0.06em;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(255, 107, 157, 0.35),
+                0 0 0 0 var(--gold),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            width: 600px;
+            height: 600px;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .cta-button:hover::after {
+            left: 100%;
+        }
+
+        .cta-button {
+            white-space: pre-line;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+            color: white;
+            border: 4px solid var(--gold);
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 
+                0 15px 60px rgba(255, 107, 157, 0.5),
+                0 0 0 8px var(--gold-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: var(--gold-light);
+        }
+
+        .cta-button.secondary {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+            color: white;
+            border: 4px solid var(--gold);
+        }
+
+        .cta-button.secondary:hover {
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 
+                0 15px 60px rgba(255, 107, 157, 0.5),
+                0 0 0 8px var(--gold-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: var(--gold-light);
+        }
+
+        /* コンテンツセクション */
+        .content {
+            padding: 120px 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .content-block {
+            background: var(--white);
+            padding: 80px 100px;
+            margin-bottom: 80px;
+            border-radius: 32px;
+            border: 4px solid var(--gold);
+            box-shadow: 
+                0 15px 60px rgba(212, 175, 55, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-block::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, 
+                var(--gold) 0%, 
+                var(--gold-light) 25%, 
+                var(--gold) 50%, 
+                var(--gold-light) 75%, 
+                var(--gold) 100%
+            );
+            background-size: 300% 300%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            animation: goldShine 4s ease-in-out infinite;
+        }
+
+        @keyframes goldShine {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .content-block::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .content-block:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 
+                0 25px 80px rgba(212, 175, 55, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 0 0 4px var(--gold-glow);
+        }
+
+        .content-block:hover::before {
+            opacity: 1;
+        }
+
+        .content-block:hover::after {
+            opacity: 0.3;
+        }
+
+        .content-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-block h2 {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+            line-height: 1.3;
+            position: relative;
+            padding-left: 32px;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-block h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-light), var(--gold));
+            border-radius: 4px;
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .content-block p {
+            font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+            color: var(--text-gray);
+            margin-bottom: 60px;
+            line-height: 2.4;
+            font-weight: 400;
+        }
+
+        /* 問題提起リスト */
+        .problem-list {
+            list-style: none;
+            margin: 40px 0 50px;
+            padding: 0;
+        }
+
+        .problem-list li {
+            font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            padding-left: 40px;
+            position: relative;
+            line-height: 2;
+        }
+
+        .problem-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        /* セミナー項目 */
+        .seminar-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 50px 0;
+        }
+
+        .seminar-item {
+            background: var(--cream);
+            padding: 32px;
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .seminar-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.25);
+        }
+
+        .seminar-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .seminar-item p {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin: 0;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* お客様の声 */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 50px 0;
+        }
+
+        .testimonial {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+        }
+
+        .testimonial h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .testimonial-title {
+            font-size: 1.25rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* 特典タイトル */
+        .bonus-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin: 40px 0 30px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* 特典画像コンテナ */
+        .bonus-image-container {
+            margin: 50px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .bonus-image {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--gold);
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            /* 高画質表示のための設定 */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+        }
+
+        /* 高解像度ディスプレイ対応 */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .bonus-image {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* メリットリスト */
+        .benefit-list {
+            list-style: none;
+            margin: 30px 0;
+            padding: 0;
+        }
+
+        .benefit-list li {
+            font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            line-height: 2;
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            color: var(--text-dark);
+            font-weight: 700;
+            margin: 40px 0 24px;
+        }
+
+        .transition-text {
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            color: var(--gold-dark);
+            font-weight: 700;
+            margin: 40px 0;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .price-comparison {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin-top: 40px;
+            border: 3px solid var(--gold-dark);
+        }
+
+        .price-comparison p {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin: 0;
+            text-align: center;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        /* 緊急性テキスト */
+        .urgency-text {
+            font-size: clamp(1.375rem, 2vw, 1.875rem);
+            color: var(--text-dark);
+            text-align: center;
+            line-height: 2.2;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* ステップ */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin: 50px 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--cream);
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .step p {
+            font-size: 1.125rem;
+            color: var(--text-dark);
+            margin: 0;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        /* フッター */
+        .footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1a1610 100%);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 80px 0 50px;
+            border-top: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 12px 0;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        .footer-nav a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-nav a:hover::after {
+            width: calc(100% + 20px);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 400;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .hero {
+                padding: 80px 0 100px;
+            }
+
+            .content {
+                padding: 80px 0;
+            }
+
+            .content-block {
+                padding: 50px 40px;
+                margin-bottom: 50px;
+                border-radius: 28px;
+            }
+
+            .cta-button {
+                padding: 24px 64px;
+                font-size: 1.25rem;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: 32px;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-block {
+                padding: 40px 28px;
+            }
+
+            .content-block h2 {
+                padding-left: 24px;
+            }
+
+            .content-block h2::before {
+                width: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- トップバナー -->
+    <div class="top-banner">
+        今なら無料開催中の生成AI活用セミナーお申込者限定で
+    </div>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-image-only">
+                <!-- ファーストビュー画像 -->
+                <img src="hero-image.jpg" alt="笑顔の若い日本人女性がタブレットを持って立っている。背景にはAIの文字が表示されたLEDスクリーンと観客のシルエット。ゴールドとピンクを基調とした華やかなステージイベントの雰囲気。\誰も教えてくれない/ バズるAI動画の レシピを配布中">
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#register" class="cta-button primary">今すぐLINEに登録して<br>無料セミナーに申し込む</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 問題提起セクション -->
+    <section class="content">
+        <div class="container">
+            <div class="content-block">
+                <h2>「AI動画で稼げるって聞いたけれど･･･」<br>そう思って始めてみたものの</h2>
+                <ul class="problem-list">
+                    <li>作れても全然可愛くない</li>
+                    <li>投稿しても全然バズらない</li>
+                    <li>稼ぐなんて夢のまた夢?</li>
+                </ul>
+                <p>正直に言います。インスタに投稿して、友だちにシェアして。でも再生数はたった12回。「何をやってもダメなのかな…」と落ち込んだ。それ、あなただけじゃありません。「何をやってもうまくいかない」そんな経験、みんなしているんです。</p>
+            </div>
+            
+            <!-- 解決策/発見セクション -->
+            <div class="content-block">
+                <h2>バズっているAI動画を見て<br>気づいてしまった。「成功の秘密」を知っている<br>人がいるんだって。</h2>
+                <p>動画制作で挫折しそうになった私たちが ついに見つけた「確実にバズる法則」 あなたにもお伝えしたいんです。</p>
+                <a href="#register" class="cta-button secondary">今すぐLINEに登録して<br>無料セミナーに申し込む</a>
+            </div>
+            
+            <!-- セミナー内容セクション -->
+            <div class="content-block">
+                <h2>セミナーの内容</h2>
+                <div class="seminar-items">
+                    <div class="seminar-item">
+                        <div class="seminar-icon">⏰</div>
+                        <p>たった60分で理解できる AIバズ動画の仕組み。</p>
+                    </div>
+                    <div class="seminar-item">
+                        <div class="seminar-icon">📊</div>
+                        <p>今すぐ始めるべき 生成AI活用術</p>
+                    </div>
+                    <div class="seminar-item">
+                        <div class="seminar-icon">▶️</div>
+                        <p>人が思わず「見てし まう」動画の仕掛け</p>
+                    </div>
+                    <div class="seminar-item">
+                        <div class="seminar-icon">🧠</div>
+                        <p>拡散されるコンテンツ の心理トリガー</p>
+                    </div>
+                    <div class="seminar-item">
+                        <div class="seminar-icon">🎬</div>
+                        <p>今日からマネできる バズ動画の作り方</p>
+                    </div>
+                    <div class="seminar-item">
+                        <div class="seminar-icon">💰</div>
+                        <p>あなたの作品を通じて お金を稼ぐ方法</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- セミナー受講者の声 -->
+            <div class="content-block">
+                <h2>セミナー受講者の声</h2>
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <h3>佐藤さん (30代) 主婦</h3>
+                        <p class="testimonial-title">育児の合間に始めて、今では月収25万円!</p>
+                        <p class="testimonial-text">具体的な体験談がここに入ります。</p>
+                    </div>
+                    <div class="testimonial">
+                        <h3>田中さん (20代) OL</h3>
+                        <p class="testimonial-title">副業初心者でしたが、2ヶ月間で副収入10万円達成!</p>
+                        <p class="testimonial-text">具体的な体験談がここに入ります。</p>
+                    </div>
+                    <div class="testimonial">
+                        <h3>鈴木さん (40代) フリーランス</h3>
+                        <p class="testimonial-title">AIを身に付けたら、進行中案件の単価が5倍に!</p>
+                        <p class="testimonial-text">具体的な体験談がここに入ります。</p>
+                    </div>
+                </div>
+                <a href="#register" class="cta-button secondary">今すぐLINEに登録して<br>無料セミナーに申し込む</a>
+            </div>
+
+            <!-- 特典/設計図セクション -->
+            <div class="content-block">
+                <h2>60分で手に入る バズる動画の設計図</h2>
+                <p>このセミナーでは、今SNSで実際に拡散されているAI動画の「なぜバズるのか」を徹底解剖。あなたも明日から再現できる具体的なレシピをお渡しします。</p>
+                <h3 class="bonus-title">セミナー申込者だけに配布<br>すぐに使える「バズるAI動画レシピ10選」</h3>
+                <div class="bonus-image-container">
+                    <img src="特典.JPG" alt="バズるAI動画レシピ10選 - 10種類の動画アイデアがスマートフォン画面のイメージと説明文で紹介されています" class="bonus-image">
+                </div>
+            </div>
+
+            <!-- メリットセクション -->
+            <div class="content-block">
+                <h2>この特典を受け取って あなたができること</h2>
+                <h3 class="subtitle">今すぐできること</h3>
+                <ul class="benefit-list">
+                    <li>「何を作ればバズるのか」で迷わなくなる</li>
+                    <li>ネタ探し・構成・演出を考える時間が激減</li>
+                </ul>
+                <p class="transition-text">> 思いつき投稿から「思って伸ばす投稿」へ</p>
+                <h3 class="subtitle">メリット</h3>
+                <ul class="benefit-list">
+                    <li>ゼロから考えなくていい</li>
+                    <li>初心者でも再現可能</li>
+                    <li>ジャンルを選ばず応用できる</li>
+                    <li>流行りが変わっても使える設計図</li>
+                </ul>
+                <div class="price-comparison">
+                    <p>これらは個別で学ぶと10万円以上かかる内容ですが<br>セミナー申込者限定特典として無料プレゼントしています。</p>
+                </div>
+            </div>
+
+            <!-- ゴールセクション -->
+            <div class="content-block">
+                <h2>あなたのゴール</h2>
+                <p>「AI動画を作れる人」ではなく<br>「AI動画で伸ばせる人」になるための設計図<br>この設計図を手に入れれば<br>あなたも明日から"バズる側"に回れます</p>
+                <a href="#register" class="cta-button secondary">今すぐLINEに登録して<br>無料セミナーに申し込む</a>
+            </div>
+
+            <!-- 緊急性/動機付けセクション -->
+            <div class="content-block">
+                <p class="urgency-text">あなたも今日から変われます。今このページを見ているということは･･･たった60分で、あなたの未来は大きく変わります。今すぐ、新しい一歩を踏み出してください。</p>
+            </div>
+
+            <!-- セミナー参加手順セクション -->
+            <div class="content-block">
+                <h2>セミナー参加手順</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>LINEを追加</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>LINE登録後に来るバナー画像をタップ</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>希望日時を選択してお申込完了</p>
+                    </div>
+                </div>
+                <a href="#register" class="cta-button secondary">今すぐLINEに登録して<br>無料セミナーに申し込む</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="#privacy">プライバシーポリシー</a>
+                <a href="#commerce">特定商取引法に基づく表記</a>
+                <a href="#company">会社概要</a>
+            </nav>
+            <p class="copyright">Copyright(c) 2026 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentBlocks = document.querySelectorAll('.content-block');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            contentBlocks.forEach(block => {
+                block.style.opacity = '0';
+                block.style.transform = 'translateY(60px)';
+                block.style.transition = 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)';
+                observer.observe(block);
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
